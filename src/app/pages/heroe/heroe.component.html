@@ -13,7 +13,10 @@
 <div class="row animate__animated animate__fadein">
 
     <div class="col">
-        <form>
+        <form
+            (ngSubmit)="guardar( f )"
+            #f="ngForm"
+        >
             <div class="form-group">
                 <label>Firebase ID</label>
                 <input 
@@ -21,6 +24,8 @@
                     class="form-control"
                     disabled="disabled"
                     placeholder="Firebase ID"
+                    name="id"
+                    [(ngModel)]="heroe.id"
                 >
                 <small class="form-text">Este campo es autogenerado</small>
             </div>
@@ -31,6 +36,8 @@
                     class="form-control"
                     placeholder="Nombre del heroe"
                     required
+                    name="nombre"
+                    [(ngModel)]="heroe.nombre"
                 >
             </div>
             <div class="form-group">
@@ -40,16 +47,18 @@
                     class="form-control"
                     placeholder="Poder del heroe"
                     required
+                    name="poder"
+                    [(ngModel)]="heroe.poder"
                 >
             </div>
             <div class="form-group">
                 <label>Estado</label>
                 <br>
-                <button class="btn btn-outline-success w-50" type="button">
+                <button *ngIf="heroe.vivo" (click)="heroe.vivo = false" class="btn btn-outline-success w-50" type="button">
                     <i class="fa fa-smile-o"></i>
                     Vivo
                 </button>
-                <button class="btn btn-outline-danger w-50" type="button">
+                <button *ngIf="!heroe.vivo" (click)="heroe.vivo = true" class="btn btn-outline-danger w-50" type="button">
                     <i class="fa fa-frown-o"></i>
                     Muerto
                 </button>
