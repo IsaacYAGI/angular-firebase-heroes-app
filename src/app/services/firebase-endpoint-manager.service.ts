@@ -14,7 +14,7 @@ export class FirebaseEndpointManagerService {
   guardarEndpoint(){
     console.log("Entre en guardar")
     Swal.fire({
-      title: 'Ingresa tu endpoint de firebase',
+      title: 'Ingresa tu endpoint de firebase (Ej: xxx.firebaseio.com/)',
       input: 'text',
       inputValue:this.urlEndpoint,
       showCancelButton: true,

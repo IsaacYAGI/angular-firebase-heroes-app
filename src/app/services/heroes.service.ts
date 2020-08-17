@@ -2,20 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HeroeModel } from 'src/models/heroe.model';
 import { map } from 'rxjs/operators';
+import { FirebaseEndpointManagerService } from './firebase-endpoint-manager.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroesService {
 
-  private url = "https://login-app-10bc2.firebaseio.com"
+  
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private firebaseEndpoint: FirebaseEndpointManagerService
   ) { }
 
   crearHeroe(heroe: HeroeModel){
-    return this.http.post(`${this.url}/heroes.json`, heroe).pipe(
+    return this.http.post(`${this.firebaseEndpoint.urlEndpoint}/heroes.json`, heroe).pipe(
       map((resp: any) =>{
         heroe.id = resp.name;
         return heroe;
@@ -29,11 +31,11 @@ export class HeroesService {
     }
     delete heroeTemp.id;
 
-    return this.http.put(`${this.url}/heroes/${heroe.id}.json`, heroeTemp);
+    return this.http.put(`${this.firebaseEndpoint.urlEndpoint}/heroes/${heroe.id}.json`, heroeTemp);
   }
 
   getHeroes(){
-    return this.http.get(`${this.url}/heroes.json`).pipe(
+    return this.http.get(`${this.firebaseEndpoint.urlEndpoint}/heroes.json`).pipe(
       map(resp => this.crearArregloHeroes(resp))
       // map(this.crearArregloHeroes)
     );
@@ -55,10 +57,10 @@ export class HeroesService {
   }
 
   getHeroe(id: string){
-    return this.http.get(`${this.url}/heroes/${id}.json`)
+    return this.http.get(`${this.firebaseEndpoint.urlEndpoint}/heroes/${id}.json`)
   }
 
   borrarHeroe(id: string){
-    return this.http.delete(`${this.url}/heroes/${id}.json`);
+    return this.http.delete(`${this.firebaseEndpoint.urlEndpoint}/heroes/${id}.json`);
   }
 }
