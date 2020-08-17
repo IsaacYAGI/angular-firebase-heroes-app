@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Instrucciones de configuración
+
+1. Se debe crear un proyecto en firebase y habilitar la base de datos en tiempo real
+1. Se debe crear un registro de heroes a fin de tener un endpoint /heroes
+1. La URL generada debe ser colocada en el proyecto haciendo clic en el botón `Configura tu endpoint de firebase aquí` e ingresando la URL. Tomar en cuenta que se debe colocar hasta el `/` quedando por ejemplo `https://xyz.firebaseio.com/`. Esta URL se guardará en el localStorage del navegador.
+1. Recargar la pagina y ya estará configurada la app web.
